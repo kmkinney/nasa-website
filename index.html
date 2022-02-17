@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Styles -->
     <link rel="stylesheet" href="/css/theme.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Asteroid Tracker</title>
-</head>
-<body> 
-    <h1>Track Asteroids</h1>
-    <p id="waiting">Waiting...<p>
+    <!-- JS -->
     <script defer type="module" src="/js/nasaAPI.js"></script>
     <script defer type="module" src="/js/app.js"></script>
+    <title>Asteroid Tracker</title>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <img class="logo" src="/img/meteor-shower.svg">
+            <h1 class="title">Track Near Earth Objects!</h1>
+        </div>
+        <img id="waiting" src="/img/meteorite.svg" class="waiting-icon"/>
+        <div id="data"></div>
+    </div>
 </body>
 </html>

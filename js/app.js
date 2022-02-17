@@ -1,35 +1,28 @@
-import someFun from "./nasaAPI.js";
-/* https://api.nasa.gov/ */
+import * as nasa from './nasaAPI.js'
 
 
-getTestData();
-/*
-function onload(){
-    const data = await getTestData()
-}
-*/
+getTestData()
 
 async function getTestData(){
-    alert('started call');
-    const start = '2020-12-19';
-    const appKey = '5s5BpYuvu9SqTQ2KqCDDElAOQsuF06l4erbwEPEe';
-    const url = `https://api.nasa.gov/neo/rest/v1/feed`
-    const params = `?start_date=${start}&api_key=${appKey}`
-    const fullURI = url + params;
-
-    startWaiting();
-    const resp = await fetch(fullURI);
-    const data = await resp.json()
+    const day = '2020-12-19'
+    startWaiting()
+    const data = await nasa.getAllByDay(day)
     console.log(data)
-    stopWaiting();
+    stopWaiting()
+
+    const id = '2006037'
+    startWaiting()
+    const idData = await nasa.getNeoById(id)
+    console.log(idData)
+    stopWaiting()
 
     return data
 }
 
 function startWaiting(){
-    document.getElementById('waiting').style.display = "block";
+    document.getElementById('waiting').style.display = "block"
 }
 
 function stopWaiting(){
-    document.getElementById('waiting').style.display = "none";
+    document.getElementById('waiting').style.display = "none"
 }
