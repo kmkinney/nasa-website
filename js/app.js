@@ -1,18 +1,21 @@
 import * as nasa from './nasaAPI.js'
 
-document.getElementById('start-date').addEventListener('load', (event) => {
-    event.preventDefault();
-    document.getElementById('start-date').value = new Date().toDateInputValue();
-    console.log('here')
-})
+/* Event Listeners */
+window.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0]
+    document.getElementById('start-date').value = today
+}, false)
 
 document.getElementById('submit').addEventListener('click', (event) => {
-    event.preventDefault();
-    const day = document.getElementById('start-date').value;
+    event.preventDefault()
+    const day = document.getElementById('start-date').value
     console.log(day)
+    loadOneDay(day)
 })
 
-getTestData()
+async function loadOneDay(day){
+    const data = await nasa.getAllByDay(day)
+}
 
 async function getTestData(){
     const day = '2020-12-19'
@@ -37,3 +40,6 @@ function startWaiting(){
 function stopWaiting(){
     document.getElementById('waiting').style.display = "none"
 }
+
+// Run startup function
+// setDayToToday()
