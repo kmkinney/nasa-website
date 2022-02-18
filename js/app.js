@@ -1,5 +1,16 @@
 import * as nasa from './nasaAPI.js'
 
+document.getElementById('start-date').addEventListener('load', (event) => {
+    event.preventDefault();
+    document.getElementById('start-date').value = new Date().toDateInputValue();
+    console.log('here')
+})
+
+document.getElementById('submit').addEventListener('click', (event) => {
+    event.preventDefault();
+    const day = document.getElementById('start-date').value;
+    console.log(day)
+})
 
 getTestData()
 

@@ -31,6 +31,16 @@ body {
     transform: rotate(45deg);
 }
 
+/* Form */
+.submit-button {
+    padding: 5px 10px;
+    display: block;
+    border: none;
+    background-color: var(--primary);
+    color: var(--dark);
+    border-radius: 5px;
+    font-family: 'Space Mono', monospace;
+}
 
 .waiting-icon {
     display:block;
