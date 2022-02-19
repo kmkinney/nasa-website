@@ -11,15 +11,31 @@ body {
     background-color: var(--dark);
     color: var(--primary);
     font-family: 'Space Mono', monospace;
-    padding: 5px 10px ;
 }
 
 .page {
     max-width: 900px;
     margin: 0 auto;
+    padding: 5px 10px;
 }
 
 /* Header styles */
+.top-bar {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--black);
+    color: var(--light);
+    overflow: auto;
+}
+.top-bar a{
+    float: right;
+    text-decoration: none;
+    color: var(--light);
+}
+.top-bar a:hover{
+    text-decoration: none;
+    color: var(--primary);
+}
 
 .header {
     display: flex;
@@ -91,6 +107,7 @@ body {
 }
 
 .fact {
+    color: var(--light);
     font-weight: 100;
 }
 
@@ -103,3 +120,17 @@ body {
 }
 
 /* Details page */
+
+.earth {
+    color: blue;
+    margin-right: 1em;
+}
+
+.moon {
+    margin-right: 1em;
+    color: grey;
+}
+
+.asteroid {
+    color: brown;
+}
