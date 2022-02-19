@@ -126,8 +126,8 @@ async function showDetails(neo){
     ctx.fillRect(0, 0, w, h)
     if(neo.moon_dist > 1){
         const scale = (w - 50) / neo.moon_dist
-        drawCirle(ctx, 25, h/2, scale/2, 'blue')
-        drawCirle(ctx, 25 + scale, h/2, scale/4, 'grey')
+        drawCirle(ctx, 25, h/2, Math.min(25,scale/2), 'blue')
+        drawCirle(ctx, 25 + scale, h/2, Math.min(12, scale/4), 'grey')
         drawCirle(ctx, w-25, h/2, 2, 'brown')
     }
     else {
