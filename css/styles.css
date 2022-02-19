@@ -11,6 +11,7 @@ body {
     background-color: var(--dark);
     color: var(--primary);
     font-family: 'Space Mono', monospace;
+    padding: 5px 10px ;
 }
 
 .page {
@@ -42,8 +43,13 @@ body {
     font-family: 'Space Mono', monospace;
 }
 
+#slider-label,
+#length-slider {
+    display: none;
+}
+
 .waiting-icon {
-    display:block;
+    display:none;
     position: fixed;
     top: 50%;
     right: 50%;
@@ -63,3 +69,37 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/* Neo Data */
+
+.neo {
+    margin: 10px 0;
+    color: var(--light);
+    font-weight: 100;
+}
+
+.neo-header {
+    margin-top: 5px;
+}
+
+.icon {
+    width: 30px;
+}
+
+.danger {
+    color: red;
+}
+
+.fact {
+    font-weight: 100;
+}
+
+.details-btn {
+    background-color: var(--primary);
+    color: var(--black);
+    border: none;
+    border-radius: 3px;
+    padding: 4px;
+}
+
+/* Details page */

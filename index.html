@@ -16,6 +16,8 @@
             <h1 class="title">Track Near Earth Objects!</h1>
         </div>
 
+        <h3>Learn about asteroids that make close approaches to Earth!</h3>
+
         <form>
             <label for="start-date">Pick a Day:</label>
             <input id="start-date" name="start" type="date"></input>
@@ -23,6 +25,10 @@
         </form>
 
         <img id="waiting" src="/img/meteorite.svg" class="waiting-icon"/>
+
+        <label id="slider-label" for="length-slider">How many results to see</label>
+        <input type="range" id="length-slider"></input>
+        <span id="length"></span>
         <div id="data"></div>
     </div>
 
