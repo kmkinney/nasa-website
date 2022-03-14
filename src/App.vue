@@ -1,32 +1,53 @@
 <template>
   <div id="app">
+    <NavComponent/>
+    <!-- <div class="top-bar">
+      <span>Made by Kevin Kinney</span>
+      <a href="http://github.com/kmkinney/nasa-website"
+        >See the code on Github!</a>
+    </div>
     <nav>
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    </nav> -->
+    <router-view />
   </div>
 </template>
 
+<script>
+import NavComponent from "@/components/NavComponent.vue"
+export default {
+    name: 'App',
+    components: {
+        NavComponent
+    }
+}
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+/*FONT*/
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&display=swap");
+
+/*THEME COLORS*/
+:root {
+  --black: #000;
+  --dark: #14213d;
+  --primary: #fca311;
+  --light: #e5e5e5;
+  --white: #fff;
 }
 
-nav {
-  padding: 30px;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+body {
+  background-color: var(--dark);
+  color: var(--primary);
+  font-family: "Space Mono", monospace;
 }
 </style>
