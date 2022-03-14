@@ -6,9 +6,9 @@
         >See the code on Github!</a>
     </div>
     <nav class="navbar">
-      <router-link class="nav-link" to="/">Search By Date</router-link> |
-      <router-link class="nav-link" to="/id">Search By Asteroid ID</router-link> |
-      <router-link class="nav-link" to="/about">Asteroid Facts</router-link>
+      <router-link class="nav-link" active-class="active" to="/" exact>Search By Date</router-link> |
+      <router-link class="nav-link" active-class="active" to="/details">Search By Asteroid ID</router-link> |
+      <router-link class="nav-link" active-class="active" to="/about">Asteroid Facts</router-link>
     </nav>
   </div>
 </template>
@@ -52,5 +52,9 @@ export default {
 }
 .nav-link:hover {
     color: var(--white);
+}
+
+.active {
+    text-decoration: underline;
 }
 </style>

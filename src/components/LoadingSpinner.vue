@@ -13,6 +13,7 @@
     animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+    z-index: 999;
 }
 
 @keyframes spin {

@@ -15,7 +15,8 @@ async function getAllByDay(day) {
     const url = 'https://api.nasa.gov/neo/rest/v1/feed' + params
     const response = await fetch(url)
     const data = await response.json()
-    return data
+    const neos = data.near_earth_objects[day].map((neo) => parseNeo(neo))
+    return neos
 }
 
 /**
@@ -30,14 +31,40 @@ async function getAllInRange(startDate, endDate) {
     const url = 'https://api.nasa.gov/neo/rest/v1/feed' + params
     const response = await fetch(url)
     const data = await response.json()
-    return data
+    const neos = []
+    let day = new Date(startDate)
+    let end = new Date(endDate)
+    while (day <= end){
+        let curr = new Date(day).toISOString().split('T')[0]
+        for(let neo of data.near_earth_objects[curr]){
+            neos.push(parseNeo(neo))
+        }
+        let newDay = day.setDate(day.getDate() + 1)
+        day = new Date(newDay)
+    }
+    return neos
 }
 
 async function getNeoById(id) {
     const url = `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${appKey}`
     const response = await fetch(url)
     const data = await response.json()
-    return data
+    return parseNeo(data)
+}
+
+function parseNeo(neo) {
+    return {
+        id: neo.id,
+        name: neo.name,
+        date: neo.close_approach_data[0].close_approach_date,
+        danger: neo.is_potentially_hazardous_asteroid,
+        max_size: neo.estimated_diameter.meters.estimated_diameter_max,
+        min_size: neo.estimated_diameter.meters.estimated_diameter_min,
+        approach_speed: neo.close_approach_data[0].relative_velocity.kilometers_per_hour,
+        dist: neo.close_approach_data[0].miss_distance.kilometers,
+        moon_dist: neo.close_approach_data[0].miss_distance.lunar
+
+    }
 }
 
 export { getAllByDay, getAllInRange, getNeoById };

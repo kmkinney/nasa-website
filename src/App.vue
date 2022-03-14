@@ -1,15 +1,6 @@
 <template>
   <div id="app">
     <NavComponent/>
-    <!-- <div class="top-bar">
-      <span>Made by Kevin Kinney</span>
-      <a href="http://github.com/kmkinney/nasa-website"
-        >See the code on Github!</a>
-    </div>
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
     <router-view />
   </div>
 </template>
@@ -49,5 +40,10 @@ body {
   background-color: var(--dark);
   color: var(--primary);
   font-family: "Space Mono", monospace;
+}
+.page {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 5px 10px;
 }
 </style>
