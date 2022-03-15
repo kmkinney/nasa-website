@@ -76,7 +76,6 @@ export default {
     async requestNeos() {
       try {
         this.loading = true;
-        console.log("called");
         let data = [];
         if (this.isRange) {
           data = await getAllInRange(
@@ -86,7 +85,6 @@ export default {
         } else {
           data = await getAllByDay(this.formattedStartDate);
         }
-        console.log("recieved");
         this.loading = false;
         this.neoData = data;
         this.$root.$data.savedSearch = data;
@@ -105,7 +103,6 @@ export default {
       return new Date(this.endDate).toISOString().split("T")[0];
     },
     disabledDates() {
-        console.log(this.startDate)
         let minDate = new Date(this.startDate)
         let maxDate = minDate.setDate(minDate.getDate() + 6)
         return {
