@@ -49,10 +49,20 @@ async function getNeoById(id) {
     const url = `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${appKey}`
     const response = await fetch(url)
     const data = await response.json()
+    console.log(data)
     return parseNeo(data)
 }
 
 function parseNeo(neo) {
+    const approaches = neo.close_approach_data
+    let minDist = approaches[0].miss_distance.lunar
+    let minDistDate = approaches[0].close_approach_date_full
+    for(let i = 0; i < approaches.length; ++i) {
+        if(approaches[i].miss_distance.lunar < minDist){
+            minDist = approaches[i].miss_distance.lunar
+            minDistDate = approaches[i].close_approach_date_full
+        }
+    }
     return {
         id: neo.id,
         name: neo.name,
@@ -62,9 +72,16 @@ function parseNeo(neo) {
         min_size: neo.estimated_diameter.meters.estimated_diameter_min,
         approach_speed: neo.close_approach_data[0].relative_velocity.kilometers_per_hour,
         dist: neo.close_approach_data[0].miss_distance.kilometers,
-        moon_dist: neo.close_approach_data[0].miss_distance.lunar
-
+        moon_dist: neo.close_approach_data[0].miss_distance.lunar,
+        min_moon_dist: minDist,
+        closest_date: minDistDate
     }
 }
 
-export { getAllByDay, getAllInRange, getNeoById };
+async function getPictureOfTheDay(){
+    const resp = await fetch('https://api.nasa.gov/planetary/apod?api_key='+appKey)
+    const data = await resp.json()
+    return data
+}
+
+export { getAllByDay, getAllInRange, getNeoById, getPictureOfTheDay };

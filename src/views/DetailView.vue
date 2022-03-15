@@ -1,22 +1,26 @@
 <template>
   <div class="page">
     <LoadingSpinner v-show="loading" />
-    <h1>
-      {{ neo.name }}
-      <span v-show="neo.dander" class="danger">POTENTIALLY HAZARDOUS</span>
-    </h1>
-    <h3 class="fact">
-      Diameter: {{ Math.round(neo.min_size) }}-{{ Math.round(neo.max_size) }} km
-    </h3>
-    <h3 class="fact">Speed: {{ Math.round(neo.approach_speed) }} km/h</h3>
-    <h3 class="fact">Approach Distance: {{ Math.round(neo.dist) }} km</h3>
-    <h3 class="fact">
-      Lunar Distance: {{ Number(neo.moon_dist).toPrecision(3) }}
-    </h3>
-    <span class="earth">&#9679;&lt;-EARTH</span>
-    <span class="moon">&#9679;&lt;-MOON</span>
-    <span class="asteroid">&#9679;&lt;-ASTEROID</span>
-    <canvas id="map"></canvas>
+    <div class="neo">
+        <h1>
+          {{ neo.name }}
+          <span v-show="neo.danger" class="danger">POTENTIALLY HAZARDOUS</span>
+        </h1>
+        <h3 class="fact">
+          Diameter: {{ Math.round(neo.min_size) }}-{{ Math.round(neo.max_size) }} meters
+        </h3>
+        <h3 class="fact">Speed: {{ Math.round(neo.approach_speed) }} km/h</h3>
+        <h3 class="fact">
+          Minimum Lunar Distance: {{ Number(neo.min_moon_dist).toPrecision(3) }}
+        </h3>
+        <h3>
+          Date of closest known approach: {{neo.closest_date}}
+        </h3>
+        <span class="earth">&#9679;&lt;-EARTH</span>
+        <span class="moon">&#9679;&lt;-MOON</span>
+        <span class="asteroid">&#9679;&lt;-ASTEROID</span>
+        <canvas id="map"></canvas>
+    </div>
   </div>
 </template>
 
@@ -58,15 +62,16 @@ export default {
       const ctx = canvas.getContext("2d");
       const w = canvas.width;
       const h = canvas.height;
+      const moonDist = this.neo.min_moon_dist
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, w, h)
-      if (this.neo.moon_dist > 1) {
-        const scale = (w - 50) / this.neo.moon_dist;
+      if (moonDist > 1) {
+        const scale = (w - 50) / moonDist;
         this.drawCircle(ctx, 25, h / 2, Math.min(25, scale / 2), "blue");
         this.drawCircle(ctx, 25 + scale, h / 2, Math.min(12, scale / 4), "grey");
         this.drawCircle(ctx, w - 25, h / 2, 2, "brown");
       } else {
-        const scale = (w - 50) * this.neo.moon_dist;
+        const scale = (w - 50) * moonDist;
         this.drawCircle(ctx, 25, h / 2, 10, "blue");
         this.drawCircle(ctx, w - 25, h / 2, 5, "grey");
         this.drawCircle(ctx, 25 + scale, h / 2, 2, "brown");
@@ -86,12 +91,15 @@ export default {
     },
   },
   created() {
-    this.getNeoData();
+    if(this.neoId !== '') this.getNeoData();
   },
 };
 </script>
 
 <style scoped>
+.danger {
+    color: red;
+}
 .earth {
   color: blue;
   margin-right: 1em;

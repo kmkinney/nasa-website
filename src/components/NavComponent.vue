@@ -7,8 +7,8 @@
     </div>
     <nav class="navbar">
       <router-link class="nav-link" active-class="active" to="/" exact>Search By Date</router-link> |
-      <router-link class="nav-link" active-class="active" to="/details">Search By Asteroid ID</router-link> |
-      <router-link class="nav-link" active-class="active" to="/about">Asteroid Facts</router-link>
+      <!-- <router-link class="nav-link" active-class="active" to="/details">Search By Asteroid ID</router-link> | -->
+      <router-link class="nav-link" active-class="active" to="/pic">Picture of the Day</router-link>
     </nav>
   </div>
 </template>
